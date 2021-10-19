@@ -1,0 +1,81 @@
+<html lang="en">
+
+    <p>Hey, I'm Lisa and I'm watching you!</p>
+
+    <svg width="500px" height="500px" viewBox="0 0 500 500">
+
+<!--head-->
+        <path d="M 145 180 L 145 160 L 125 160 L 125 160
+                L 110 140 L 120 120 L 115 90 L 140 85 L 150 55
+                L 170 70 L 190 50 L 210 75 L 235 75 L 225 100
+                L 250 115 L 225 125 L 240 150 L 205 160 L 205 180
+                z"
+                fill="#ffd90f"/>
+
+<!--eyes-->
+        <circle cx="155" cy="110" r="12" fill="white"/>
+        <circle class="wave" style="transform-origin: 155px 110px" cx="150" cy="115" r="3" fill="black"/>
+        <circle cx="195" cy="110" r="12" fill="white"/>
+        <circle class="wave" style="transform-origin: 195px 110px" cx="190" cy="115" r="3" fill="black"/>
+        
+<!--mouth-->
+        <path d="M 155,140 Q 175,160 195,140" fill="none" stroke="black"/>
+        <path d="M 156,140 Q 155,140 150,142" fill="none" stroke="black"/>
+        <path d="M 155,140 Q 175,160 195,140" fill="none" stroke="black"/>
+
+<!--shoulder-->
+    <rect x="125" y="185" width="100" rx="5" ry="10" height="30" fill="#ffd90f" />
+
+<!--arms-->
+    <rect transform="rotate(-45)" x="-90" y="220" width="50" rx="5" ry="10" height="30" fill="#ffd90f"
+    />
+    <rect transform="rotate(45)" x="190" y="80" width="60" rx="5" ry="10" height="30" fill="#ffd90f"/>
+    <rect transform="rotate(45)" x="286" y="-28" width="50" rx="5" ry="10" height="30" fill="#ffd90f"/>
+    <rect transform="rotate(-45)" x="-32" y="327" width="60" rx="5" ry="10" height="30" fill="#ffd90f"/>
+
+<!--fingers-->
+    <rect transform="rotate(45)" x="180" y="102" width="32" rx="4" ry="4" height="8" fill="#ffd90f"/>
+    <rect transform="rotate(45)" x="173" y="91" width="32" rx="4" ry="4" height="8" fill="#ffd90f"/>
+    <rect transform="rotate(45)" x="178" y="80" width="32" rx="4" ry="4" height="8" fill="#ffd90f"/>
+    <rect transform="rotate(20)" x="142" y="146" width="9" rx="4" ry="4" height="32" fill="#ffd90f"/>
+
+<!--necklace-->
+    <circle cx="205" cy="183" r="7" fill="white" stroke="black" />
+    <circle cx="191" cy="183" r="7" fill="white" stroke="black" />
+    <circle cx="177" cy="183" r="7" fill="white" stroke="black" />
+    <circle cx="163" cy="183" r="7" fill="white" stroke="black" />
+    <circle cx="149" cy="183" r="7" fill="white" stroke="black" />
+
+<!--legs-->
+    <rect x="140" y="280" width="30" rx="5" ry="10" height="100" fill="#ffd90f" />
+    <rect x="180" y="280" width="30" rx="5" ry="10" height="100" fill="#ffd90f" />
+
+<!--dress-->
+    <path d="M 140 215 L 210 215 L 229 315 L 211 300 L 193 315
+                L 175 300 L 157 315 L 139 300 L 121 315 z"
+                fill="#F05E2F" />
+
+<!--feet-->
+    <ellipse cx="150" cy="380" rx="25" ry='10' fill="#ffd90f" />
+    <rect x="120" y="382" width="57" rx="5" ry="10" height="10" fill="#F05E2F"/>
+    <rect x="120" y="375" width="8" rx="5" height="16" fill="#F05E2F" />
+    <rect x="132" y="370" width="8" rx="5" height="16" fill="#F05E2F" />
+    <ellipse cx="190" cy="380" rx="25" ry='10' fill="#ffd90f" />
+    <rect x="160" y="382" width="57" rx="5" ry="10" height="10" fill="#F05E2F"/>
+    <rect x="160" y="375" width="8" rx="5" height="16" fill="#F05E2F" />
+    <rect x="172" y="370" width="8" rx="5" height="16" fill="#F05E2F" />
+    </svg>
+
+    <style>
+        @keyframes waving{
+                50%{transform: rotate(45deg);}
+        }
+
+        .wave{
+            animation-duration: 3s;
+            animation-name: waving;
+            animation-iteration-count: infinite;
+        }
+    </style>
+
+</html>
