@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<title>Canvas</title>
+		<meta charset="utf-8">
+	</head>
+	<style>
+		canvas{
+			border: solid 1px;
+		}
+	</style>
+	<body>
+		<p>Neste trabalho, foi criado um objeto em canvas que se movimenta a partir das setas do teclado.</p>
+		<canvas width="600" height="400"></canvas>
+		<script>
+			var UP = 38, DOWN = 40, LEFT = 37, RIGHT = 39;
+			var moveEsquerda = false, moveDireita = false, moveCima = false, moveBaixo = false;
+			var cnv = document.querySelector("canvas");
+			var ctx = cnv.getContext("2d");
+			var p1 = {
+                x: 25,
+                y: 25
+            }
+            var p2 = {
+                x: 45,
+                y: 45
+            }
+            var p3 = {
+                x: 50,
+                y: 50
+            };
+
+			update();
+
+			window.addEventListener("keydown",keydownHandler);
+			window.addEventListener("keyup",keyupHandler);
+
+			function keydownHandler(e){
+				var key = e.keyCode;
+				if(key === LEFT && key !== RIGHT){
+					moveEsquerda = true;
+				}
+				if(key === RIGHT && key !== LEFT){
+					moveDireita = true;
+				}
+				if(key === UP && key !== DOWN){
+					moveCima = true;
+				}
+				if(key === DOWN && key !== UP){
+					moveBaixo = true;
+				}
+			}
+
+			function keyupHandler(e){
+				var key = e.keyCode;
+				if(key === LEFT && key !== RIGHT){
+					moveEsquerda = false;
+				}
+				if(key === RIGHT && key !== LEFT){
+					moveDireita = false;
+				}
+				if(key === UP && key !== DOWN){
+					moveCima = false;
+				}
+				if(key === DOWN && key !== UP){
+					moveBaixo = false;
+				}
+			}
+
+			function move(){
+				if(moveEsquerda){
+					p1.x--;
+					p2.x--;
+					p3.x--;
+				}
+				if(moveDireita){
+					p1.x++;
+					p2.x++;
+					p3.x++;
+				}
+				if(moveCima){
+					p1.y--;
+					p2.y--;
+					p3.y--;
+				}
+				if(moveBaixo){
+					p1.y++;
+					p2.y++;
+					p3.y++;
+				}
+			}
+
+			function render(){
+				ctx.clearRect(0,0,cnv.width,cnv.height);
+				ctx.fillRect(p1.x, p1.y, 100, 100);
+                ctx.clearRect(p2.x, p2.y, 60, 60);
+                ctx.strokeRect(p3.x, p3.y, 50, 50);
+				ctx.fillStyle = "#FFA500";
+				ctx.strokeStyle = "#FFA500";
+			}
+
+			function update(){
+				requestAnimationFrame(update, cnv);
+				move();
+				render();
+			}
+		</script>
+	</body>
+</html>
