@@ -9,5 +9,4 @@ Objeto dinâmico feito em canvas e html que se movimenta a partir das setas do t
 
 ## Processamento de Imagem
 Link para visualização do trabalho 3.1: https://htmlpreview.github.io/?https://github.com/biancarvalho/computer-graphics/blob/main/image-process/trabalho3.1.html
-\\
 Link para visualização do trabalho 3.2: https://htmlpreview.github.io/?https://github.com/biancarvalho/computer-graphics/blob/main/image-process/trabalho3.2.html
