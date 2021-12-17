@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Trabalho 3.1</title>
+        <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+        </script>
+    </head>
+
+    <h1 style="text-align: center;">Trabalho 3.1 - Introdução à Computação Gráfica</h1>
+    <h2 style="text-align: center;">Bianca Dias de Carvalho</h2>
+    <h3 style="text-align: center;">Manipulação de histogramas em imagens</h3>
+    
+    <figure>
+        <canvas id="imagemOriginal" width="600" height="750"></canvas>
+        <canvas id="imagemOutput" width="600" height="750"></canvas>
+        <figcaption>
+            Imagem da esquerda: Original. Imagem da direita: Imagem processada. Gráfico RGB da imagem original.
+        </figcaption>
+    </figure>
+
+    <figure>
+        <canvas id="histRGB" width="800" height="700"></canvas>
+        <figcaption>
+            Distribuição da intensidade do azul, do verde e do vermelho na Imagem Original.
+        </figcaption>
+    </figure>
+
+    <figure>
+        <canvas id="histHSL" width="800" height="300"></canvas>
+        <figcaption>
+            Distribuição da luminância na Imagem Original.
+        </figcaption>
+    </figure>
+
+    <script>
+        var canvasOriginal = document.getElementById("imagemOriginal");
+        var ctxOriginal = canvasOriginal.getContext("2d");
+        
+        var canvasOut = document.getElementById("imagemOutput");
+        var ctxOutput = canvasOut.getContext("2d");
+                
+        var canvashistRGB = document.getElementById("histRGB");
+        var ctxhistRGB = canvashistRGB.getContext("2d");
+        
+        var canvashistHSL = document.getElementById("histHSL");
+        var ctxhistHSL = canvashistHSL.getContext("2d");
+
+        var imgOriginal = new Image();
+        var imgDataOut = new Image();
+        var imgUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Igreja_de_S%C3%A3o_Francisco_de_Assis_%28Ouro_Preto%2C_MG%29_por_Rodrigo_Tetsuo_Argenton.jpg/640px-Igreja_de_S%C3%A3o_Francisco_de_Assis_%28Ouro_Preto%2C_MG%29_por_Rodrigo_Tetsuo_Argenton.jpg";
+        
+        imgOriginal.crossOrigin = '';
+        imgDataOut.crossOrigin = '';
+        imgOriginal.src = imgUrl;
+        imgOriginal.onload = function(){
+            ctxOriginal.drawImage(imgOriginal, 0, 0);
+            ctxOutput.drawImage(imgOriginal, 0, 0);
+            
+            imgDataOut = ctxOriginal.getImageData(0, 0, 600, 750);
+            
+            // processando apenas um canal de cor
+            for (let i = 0; i < imgDataOut.data.length; i += 4) {
+                imgDataOut.data[i+1] = 255 - imgDataOut.data[i+1];
+            }
+            ctxOutput.putImageData(imgDataOut, 0, 0);		
+
+            // criando histograma rgb
+            var r=[];
+            var g=[];
+            var b=[];
+
+            for (let i=0; i < 256; i += 1) {
+                r[i]=0;
+                g[i]=0;
+                b[i]=0;
+            };
+
+            for (let i = 0; i < imgDataOut.data.length; i += 4) {
+                r[imgDataOut.data[i]] = r[imgDataOut.data[i]]+1;
+                g[imgDataOut.data[i+1]] = g[imgDataOut.data[i+1]]+1;
+                b[imgDataOut.data[i+2]] = b[imgDataOut.data[i+2]]+1;
+            };
+
+            for (let i=0; i < r.length; i+=1) {
+                ctxhistRGB.fillStyle='Red';
+                ctxhistRGB.fillRect(i+530,((700-r[i]/50))-20,1,r[i]/50);
+            };
+
+            for (let i=0; i < g.length; i+=1) {
+                ctxhistRGB.fillStyle='Green';
+                ctxhistRGB.fillRect(i+270,(700-(g[i]/50))-20,1,g[i]/50);
+            };
+
+            for (let i=0; i < b.length; i+=1) {
+                ctxhistRGB.fillStyle='Blue';
+                ctxhistRGB.fillRect(i+10,(700-(b[i]/50))-20,1,b[i]/50);
+            };
+
+            //RBG to HSL
+            // Tornando os valores de RGB em frações de 1
+            r /= 255;
+            g /= 255;
+            b /= 255;
+
+            // Encontrando o menor e o maior valor de cada canal 
+            let cmin = Math.min(r,g,b),
+                cmax = Math.max(r,g,b),
+                delta = cmax - cmin,
+                h = 0,
+                s = 0,
+                l = 0;
+
+                // Igual
+                if (delta == 0)
+                    h = 0;
+                // Vermelho é max
+                else if (cmax == r)
+                    h = ((g - b) / delta) % 6;
+                // Verde é max
+                else if (cmax == g)
+                    h = (b - r) / delta + 2;
+                // Azul é max
+                else
+                    h = (r - g) / delta + 4;
+
+                h = Math.round(h * 60);
+                    
+                if (h < 0)
+                    h += 360;
+
+                    l = (cmax + cmin) / 2;
+
+                // Calculando a saturação
+                s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+                
+                // Multiplicando l e s por 100
+                s = +(s * 100).toFixed(1);
+                l = +(l * 100).toFixed(1);
+
+                for (let i=0; i < l.length; i+=1) {
+                ctxhistHSL.fillStyle='Gray';
+                ctxhistHSL.fillRect(i+10,(300-(l[i]/50))-20,1,l[i]/50);
+                };
+        };
+    </script>
+
+</html>
