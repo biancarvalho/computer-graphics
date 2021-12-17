@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Introdução à Computação Gráfica
 Repositório com os trabalhos referentes ao curso de Introdução à Computação Gráfica da FGV-EMap.
 
@@ -19,4 +18,5 @@ Desenho da Lisa Simpson feito a partir de primitivas gráficas com aplicação d
 Objeto dinâmico feito em canvas e html que se movimenta a partir das setas do teclado. Link para visualização do trabalho: https://htmlpreview.github.io/?https://github.com/biancarvalho/computer-graphics/blob/main/canvas/canvas.html.
 
 ## Processamento de Imagem
->>>>>>> 26226175d2df1f1898026b0d615dbe7b8d2689e1
+Link para visualização do trabalho 3.1: https://htmlpreview.github.io/?https://github.com/biancarvalho/computer-graphics/blob/main/image-process/trabalho3.1.html
+Link para visualização do trabalho 3.2: https://htmlpreview.github.io/?https://github.com/biancarvalho/computer-graphics/blob/main/image-process/trabalho3.2.html
